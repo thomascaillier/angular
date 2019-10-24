@@ -27,6 +27,10 @@ a {
     display: grid;
     grid-template-columns: 50% auto;
 }
+.container.button{
+    display: grid;
+    grid-template-columns: 25% auto;
+}
 .col {
     padding: .4em 1.3em;
 }
@@ -46,7 +50,7 @@ input.txt, textarea.txt {
 input.btn {
     border: 0;
     display:block;
-    padding:1em 3em;
+    padding:1em 3em 1em 3em;
     background:#A5F883;
     color:#003A61;
     margin-bottom:1em;
