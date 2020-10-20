@@ -1,0 +1,17 @@
+<div class="div-main bloc-center">
+    <div>
+        <input type="submit" class="btn" value="Ajouter une tâche" routerLink="/taches/ajouter">
+    </div>
+    <div class="color-dark">
+        <div class="col bloc-center">
+            <p class="text-center">
+                Liste des tâches
+            </p>
+        </div>
+    </div>
+    <div class="container color-light bloc-center">
+        <div class="col">
+            <app-tache *ngFor="let tache of taches" [tache]="tache"></app-tache>
+        </div>
+    </div>
+</div>
