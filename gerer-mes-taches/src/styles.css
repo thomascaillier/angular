@@ -62,6 +62,10 @@ input.btn {
     font-weight:bold;
     cursor:pointer;
 }
+.life-container .detail {
+    font-weight: normal;
+    font-style: italic;
+}
 .bloc-center {
     display:block;
     margin:auto;
@@ -71,6 +75,10 @@ input.btn {
 }
 .div-main {
     width: 600px;
+}
+
+input.btn:disabled {
+    background: grey;
 }
 
 input[type=checkbox].css-checkbox {

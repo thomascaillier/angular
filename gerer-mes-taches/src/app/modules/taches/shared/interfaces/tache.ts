@@ -1,4 +1,7 @@
 export interface Tache {
-    libelle: string
+    id?: number
+    name: string
+    detail?: string
+    date?: Date
     isImportant: boolean
 }

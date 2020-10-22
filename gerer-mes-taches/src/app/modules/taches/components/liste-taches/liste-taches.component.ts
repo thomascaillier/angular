@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { TachesService } from 'src/app/modules/shared/services/taches.service';
 import { Tache } from '../../shared/interfaces/tache';
 
 @Component({
@@ -8,16 +10,40 @@ import { Tache } from '../../shared/interfaces/tache';
 })
 export class ListeTachesComponent implements OnInit {
 
-  taches: Tache[];
+  taches$: Observable<Tache[]>
+  selectedTaches: number[] = []
 
-  constructor() { }
+  unsubscribe: Subscription = new Subscription()
+
+  constructor(private tachesService: TachesService) { }
 
   ngOnInit(): void {
-    this.taches = [
-      { libelle: "Acheter une voiture", isImportant: false },
-      { libelle: "Quitter ma femme", isImportant: true },
-      { libelle: "Arrêter la bière", isImportant: false }
-    ];
+    this.taches$ = this.tachesService.taches$
+    this.tachesService.readAll()
+  }
+
+  ngOnDestroy(): void {
+    if (this.unsubscribe != null) {
+      this.unsubscribe.unsubscribe()
+    }
+  }
+
+  toggleSelectedTache(id: number): void {
+    if (this.selectedTaches.includes(id)) {
+      this.selectedTaches = this.selectedTaches.filter(i => i != id)
+    } else {
+      this.selectedTaches.push(id)
+    }
+  }
+
+  supprimer(): void {
+    this.selectedTaches.forEach(t =>
+      this.tachesService.delete(t)
+    );
+  }
+
+  filter(filter: string): void {
+    this.tachesService.filter(filter)
   }
 
 }

@@ -1,6 +1,7 @@
 <div class="div-main bloc-center">
     <div>
         <input type="submit" class="btn" value="Ajouter une tâche" routerLink="/taches/ajouter">
+        <input type="button" class="btn" value="Supprimer" (click)="supprimer()">
     </div>
     <div class="color-dark">
         <div class="col bloc-center">
@@ -11,7 +12,19 @@
     </div>
     <div class="container color-light bloc-center">
         <div class="col">
-            <app-tache *ngFor="let tache of taches" [tache]="tache"></app-tache>
+            <table>
+                <tr *ngFor="let tache of taches$ | async">
+                    <td>
+                        <input type="checkbox" class="css-checkbox" name="{{tache.id}}" id="{{tache.id}}"
+                            (click)="toggleSelectedTache(tache.id)">
+                        <label for="{{tache.id}}" class="css-label"></label>
+                    </td>
+                    <td>
+                        <app-tache [tache]="tache"></app-tache>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
+    <app-research-bar (filter)="filter($event)"></app-research-bar>
 </div>

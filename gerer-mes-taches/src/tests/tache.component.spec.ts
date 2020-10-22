@@ -9,13 +9,13 @@ describe('TacheComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TacheComponent, ImportantDirective]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TacheComponent);
     component = fixture.componentInstance;
+    component.tache = { name: "", isImportant: false }
     fixture.detectChanges();
   });
 
